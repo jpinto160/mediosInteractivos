@@ -61,8 +61,7 @@ function draw() {
   line(295,145,288,149)
   
 	strokeWeight(1)
-  fill(255)
-  triangle(255,28,280,29,300,0)
+ 
 	fill(0)
 	triangle(255,75,305,0,325,0)
   fill(255)
