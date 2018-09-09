@@ -7,12 +7,12 @@ var velt = 0;
 var refY = 0;
 var sto = 1;
 var poses = 0;
-var pal = 0;
+var pal = 321;
 var stopal = 1;
 
 function setup() {
-  createCanvas(321, 207);
-  frameRate(30);
+  createCanvas(windowWidth,windowHeight);
+  frameRate(20);
 }
 
 function draw() {
@@ -27,15 +27,15 @@ function draw() {
     noStroke();
     //color amarrillo con transpariencia
     fill(243, 250, 52, 100);
-    arc(321, 207, 240, 240, PI, -HALF_PI);
+    arc(321*width/321, 207*height/207, 240*width/321, 240*height/207, PI, -HALF_PI);
     //parte central de la luna
     //arco central de luna 
     //color al 100% de opacidad(transpariencia)
     fill(243, 250, 52);
-    arc(321, 207, 200, 200, PI, -HALF_PI);
+    arc(321*width/321, 207*height/207, 200*width/321, 200*height/207, PI, -HALF_PI);
     //arco de decoración con color con transparencia
     fill(145, 133, 0, 100);
-    ellipse(295, 155, 30, 30);
+    ellipse(295*width/321, 155*height/207, 30*width/321, 30*height/207);
     //estrellas
     //variables para modificar la transpariencia de los circulos
     //modificicación aleatoria de los colores 
@@ -49,41 +49,41 @@ function draw() {
     //modificación tipo 1 
     //cambio de transpariencia a circulos de  a 254 como cantidades posibles
     fill(243, 250, 52, a);
-    ellipse(110, 70, 4, 4);
-    ellipse(240, 55, 5, 5);
-    ellipse(170, 95, 5, 5);
-    ellipse(280, 15, 5, 5);
-    ellipse(50, 95, 5, 5);
-    ellipse(240, 55, 5, 5);
+    ellipse(110*width/321, 70*height/207, 4*width/321, 4*height/207);
+    ellipse(240*width/321, 55*height/207, 5*width/321, 5*height/207);
+    ellipse(170*width/321, 95*height/207, 5*width/321, 5*height/207);
+    ellipse(280*width/321, 15*height/207, 5*width/321, 5*height/207);
+    ellipse(50*width/321, 95*height/207, 5*width/321, 5*height/207);
+    ellipse(240*width/321, 55*height/207, 5*width/321, 5*height/207);
     //modificación del color verde según el numero aleatorio
     //resta de 50 a la modificación del color verde
     fill(243, a - 50, 52, a);
-    ellipse(60, 45, 5, 5);
+    ellipse(60*width/321, 45*height/207, 5*width/321, 5*height/207);
 		//modificación tipo 2
     fill(243, 250, 52, aa);
-    ellipse(220, 80, 5, 5);
-    ellipse(175, 150, 5, 5);
-    ellipse(95, 165, 5, 5);
-    ellipse(170, 35, 5, 5);
-    ellipse(40, 85, 5, 5);
+    ellipse(220*width/321, 80*height/207, 5*width/321, 5*height/207);
+    ellipse(175*width/321, 150*height/207, 5*width/321, 5*height/207);
+    ellipse(95*width/321, 165*height/207, 5*width/321, 5*height/207);
+    ellipse(170*width/321, 35*height/207, 5*width/321, 5*height/207);
+    ellipse(40*width/321, 85*height/207, 5*width/321, 5*height/207);
     //modificación tipo 3
     fill(243, 250, 52, aaa);
-    ellipse(30, 180, 5, 5);
-    ellipse(200, 65, 5, 5);
+    ellipse(30*width/321, 180*height/207, 5*width/321, 5*height/207);
+    ellipse(200*width/321, 65*height/207, 5*width/321, 5*height/207);
 
     //nave
     //uso de variables para afectar el movimiento de la nave tanto en X como en Y
     // triangulo- superior e inferior
     fill(255, 30, 40);
-    triangle(120 + movX, 247 + movY, 140 + movX, 247 + movY, 140 + movX, 267 + movY);
+    triangle((120 + movX)*width/321, (247 + movY)*height/207, (140 + movX)*width/321, (247 + movY)*height/207, (140 + movX)*width/321, (267 + movY)*height/207);
     fill(255);
-    triangle(80 + movX, 300 + movY, 90 + movX, 309 + movY, 115 + movX, 270 + movY);
+    triangle((80 + movX)*width/321, (300 + movY)*height/207, (90 + movX)*width/321, (309 + movY)*height/207, (115 + movX)*width/321, (270 + movY)*height/207);
     //cuerpo central de la nave
     fill(255, 122, 15);
-    quad(80 + movX, 287 + movY, 120 + movX, 247 + movY, 140 + movX, 267 + movY, 100 + movX, 307 + movY);
+    quad((80 + movX)*width/321, (287 + movY)*height/207, (120 + movX)*width/321, (247 + movY)*height/207, (140 + movX)*width/321, (267 + movY)*height/207, (100 + movX)*width/321, (307 + movY)*height/207);
     fill(255);
     //circulo de decoración 
-    ellipse(118 + movX, 267 + movY, 15, 15);
+    ellipse((118 + movX)*width/321, (267 + movY)*height/207, 15*width/321, 15*height/207);
     //variable modificada para el aumento en el eje X
     movX = movX + 5;
     //variable modificada para la resta en el eje Y
@@ -97,7 +97,7 @@ function draw() {
     //nuevo fondo para la nueva parte 
     fill(2, 20, 55);
     //uso de una variable para aumentar la altura del rectángulo
-    rect(0, 0, 321, 1 + velt);
+    rect(0*width/321, 0*height/207, 321*width/321, (1 + velt)*height/207);
     //modificación de la variable velt para general el aumento en la altura
     velt = velt + 10;
   }
@@ -108,14 +108,14 @@ function draw() {
     //ambiente del escenario
     //arcos uno sobre otro
     fill(243, 250, 52);
-    arc(162, 320, 400, 350, PI, TWO_PI);
+    arc(162*width/321, 320*height/207, 400*width/321, 350*height/207, PI, TWO_PI);
     //se aumenta la transparencia del círculo del fondo
     fill(243, 250, 52, 100);
-    arc(162, 310, 400, 350, PI, TWO_PI);
+    arc(162*width/321, 310*height/207, 400*width/321, 350*height/207, PI, TWO_PI);
     //círculos de decoración 
     fill(145, 133, 0, 100);
-    ellipse(230, 180, 30, 30);
-    ellipse(150, 190, 30, 30);
+    ellipse(230*width/321, 180*height/207, 30*width/321, 30*height/207);
+    ellipse(150*width/321, 190*height/207, 30*width/321, 30*height/207);
 
     //estrellas 2
 		//creación de nuevas variables para la modificación de las estrellas 
@@ -132,31 +132,31 @@ function draw() {
     //se cambian algunas coordenadas en X y en Y para acomodar mejor las estrellas
     //en el espacio
     fill(243, 250, 52, a1);
-    ellipse(110, 70, 4, 4);
-    ellipse(240, 55, 5, 5);
-    ellipse(170, 95, 5, 5);
-    ellipse(280, 15, 5, 5);
-    ellipse(50, 95, 5, 5);
-    ellipse(240, 55, 5, 5);
-    ellipse(260, 75, 5, 5);
+    ellipse(110*width/321, 70*height/207, 4*width/321, 4*height/207);
+    ellipse(240*width/321, 55*height/207, 5*width/321, 5*height/207);
+    ellipse(170*width/321, 95*height/207, 5*width/321, 5*height/207);
+    ellipse(280*width/321, 15*height/207, 5*width/321, 5*height/207);
+    ellipse(50*width/321, 95*height/207, 5*width/321, 5*height/207);
+    ellipse(240*width/321, 55*height/207, 5*width/321, 5*height/207);
+    ellipse(260*width/321, 75*height/207, 5*width/321, 5*height/207);
     //modificación del color verde según el numero aleatorio
     //resta de 50 a la modificación del color
     fill(243, a1 - 50, 52, a1);
-    ellipse(60, 45, 7, 7);
-    ellipse(290, 130, 7, 7);
+    ellipse(60*width/321, 45*height/207, 7*width/321, 7*height/207);
+    ellipse(290*width/321, 130*height/207, 7*width/321, 7*height/207);
 
     //se mantiene el segundo patrón correspondiente a la primera parte
     //modificación tipo 2
     fill(243, 250, 52, aa1);
-    ellipse(220, 80, 5, 5);
-    ellipse(190, 120, 5, 5);
-    ellipse(95, 125, 5, 5);
-    ellipse(170, 35, 5, 5);
-    ellipse(40, 35, 5, 5);
+    ellipse(220*width/321, 80*height/207, 5*width/321, 5*height/207);
+    ellipse(190*width/321, 120*height/207, 5*width/321, 5*height/207);
+    ellipse(95*width/321, 125*height/207, 5*width/321, 5*height/207);
+    ellipse(170*width/321, 35*height/207, 5*width/321, 5*height/207);
+    ellipse(40*width/321, 35*height/207, 5*width/321, 5*height/207);
     fill(243, 250, 52, aaa1);
-    ellipse(30, 50, 5, 5);
+    ellipse(30*width/321, 50*height/207, 5*width/321, 5*height/207);
     //se agregó este círculo 
-    ellipse(200, 65, 5, 5);
+    ellipse(200*width/321, 65*height/207, 5*width/321, 5*height/207);
 
 
     //nave
@@ -164,42 +164,48 @@ function draw() {
     //se empieza de atras hacia adelante 
     //triangulo inferior
     fill(255);
-    triangle(152, 20 + refY, 157, 0 + refY, 163, 20 + refY);
+    triangle(152*width/321, (20 + refY)*height/207, 157*width/321, (0 + refY)*height/207, 163*width/321, (20 + refY)*height/207);
     //cuerpo rectangular de la nave
     fill(255, 122, 15);
-    rect(150, -15 + refY, 15, 30);
+    rect(150*width/321, (-15 + refY)*height/207, 15*width/321, 30*height/207);
     //circulo decorativo
     fill(255);
-    ellipse(157, -5 + refY, 10, 10);
+    ellipse(157*width/321, (-5 + refY)*height/207, 10*width/321, 10*height/207);
     fill(255, 30, 40);
     //triangulo superior
-    triangle(150, -15 + refY, 166, -15 + refY, 158, -20 + refY);
+    triangle(150*width/321, (-15 + refY)*height/207, 166*width/321, (-15 + refY)*height/207, 158*width/321, (-20 + refY)*height/207);
     //modificación de la variable para generar el aumento en la coordenada Y 
     //multiplicada por la variable sto para generar el detenimiento del objeto
     refY = refY + 3 * sto;
     //condición para detener la nave encima del planeta
-    if (refY > 135) {
+    if (refY > 50*height/207) {
       sto = 0;
     }
     //animación de estrella fugaz 
     fill(49, 218, 238);
-    ellipse(-5 + poses, 40, 60, 5);
+    ellipse((-5 + poses)*width/321, 40*height/207, 60*width/321, 5*height/207);
     //causal de rapidez del movimiento de la estrella
     poses = poses + 20;
     //se agrega texto "the space are awesome"
     //se aumenta el tamaño de la letra
-    textSize(22);
+    textSize(22*width/321);
     //se cambia el estilo del texto a BOLD
     textStyle(BOLD);
     //función para mostrar el texto 
     //disminución de la entrada en X para dar efecto de entrada al texto
-    text('THE SPACE IS AWESOME', 321 - pal, 40);
+    text('THE SPACE IS AWESOME', (pal)*width/321, 40*height/207);
     //modificación de la variable pal por la variable stopal para generar el efecto
-    pal = pal + 4 * stopal;
+    pal = pal - 4 * stopal;
     //condición para que se detenga el texto en la posición requerida
-    if (pal > 290) {
+    if (pal< 15*width/321) {
       stopal = 0;
     }
   }
-
+  
+  //if (frameCount<=200 ){
+    //if (frameCount %1==0){
+    //saveCanvas('miflipbook'+frameCount, 'jpg');
+    //} 
+  //}
+	//print(frameCount);
 }
