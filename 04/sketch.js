@@ -238,10 +238,10 @@ function draw() {
     if (colsel == 10) {
       fill(102, 36, 131);
       if (hersel == 6) {
-        stroke(16, 247, 217);
+        stroke(102, 36, 131);
       }
       if (hersel == 7) {
-        stroke(16, 247, 217);
+        stroke(102, 36, 131);
       }
       limpi = 0;
     }
