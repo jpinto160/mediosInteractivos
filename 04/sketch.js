@@ -226,6 +226,9 @@ function draw() {
     //color #9
     if (colsel == 9) {
       fill(87, 247, 200);
+      if (hersel == 2) {
+        noFill;
+      }
       if (hersel == 6) {
         stroke(87, 247, 200);
       }
@@ -249,11 +252,18 @@ function draw() {
     //herramienta #1
     if (hersel == 1) {
       ellipse(mouseX, mouseY, 20, 20);
+      ellipse(mouseX-7.5,mouseY-10,10,10);
+      ellipse(mouseX+7.5,mouseY-10,10,10);
       limpi = 0;
     }
     //herramienta #2
     if (hersel == 2) {
-      rect(mouseX, mouseY, 20, 20);
+      ellipse(mouseX,mouseY,30,30);
+      noFill();
+      line(mouseX+1.5,mouseY+1.5,mouseX+1.5,mouseY+5);
+      line(mouseX+3,mouseY+1.5,mouseX+3,mouseY+5);
+      arc(mouseX+15,mouseY+15,PI,HALF_PI);
+      //rect(mouseX, mouseY, 20, 20);
       limpi = 0;
     }
     //herramienta #3
