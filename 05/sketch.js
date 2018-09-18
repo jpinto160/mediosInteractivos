@@ -18,33 +18,36 @@ function draw() {
   //fondo con color
   fill(32, 201, 226);
   rect(0, 0, 800, 400);
-  
-  //segu=second();
-  //minu=minute();
-  //hr=hour();
-  if (hr>=17){
+  //PONER // PARA AUMENTAR LA VELOCIDAD DEL TIEMPO
+  //QUITAR PARA SELECCIÓNAR LA HORA REAL DEL DÍA
+  segu=second();
+  minu=minute();
+  hr=hour();
+  if (hrrec<=17){
    //rectangulo que va "creciendo" según las horas
   fill(6, 38, 65);
   rect(600 - hrrec, 0, 0 + hrrec, 400);
   }
   //escala para adecuar el movimiento del cuadrado
-  hrrec = map(hr, 0, 23, 0, 600);
+  hrrec = map(hr, 0, 11, 0, 600);
 	//operación que simula el aumento en segundos
-  segu = segu + 1;
+  
 	//condición para aumento de los minutos y reinicio del segundero
-  if (segu == 59) {
-    minu = minu + 1;
-    segu = 0;
-  }
+  //	QUITAR // PARA AUMENTAR LA VELOCIDAD DEL TIEMPO
+  //segu = segu + 1;
+  //if (segu == 59) {
+    //minu = minu + 1;
+    //segu = 0;
+  //}
   //condición para aumento de la hora y el reinicio de los minutos
-  if (minu == 59) {
-    hr = hr + 1;
-    minu = 0;
-  }
+  //if (minu == 59) {
+    //hr = hr + 1;
+    //minu = 0;
+  //}
   //condición para el aumento el reinicio de la hora 
-  if (hr+12 == 24) {
-    hr = 0;
-  }
+  //if (hr == 24) {
+    //hr = 0;
+  //}
 
 	//ambientación del escenario 
   fill(0, 255, 0);
@@ -91,9 +94,9 @@ function draw() {
   line(345, 280, 345, 340);
   line(300, 310, 390, 310);
   //sol que avanza con el tiempo
+ 
   push(); 
   noStroke();
-  
   fill(255, 246, 0);
   ellipse(470-hrrec,60,80,80);
   fill(255);
@@ -105,6 +108,7 @@ function draw() {
   ellipse(300-hrrec,100,50,40);
   ellipse(330-hrrec,100,50,40);
   ellipse(360-hrrec,100,60,50);
+  
   //nube #3
   ellipse(500-hrrec,40,50,40);
   ellipse(530-hrrec,40,50,40);
@@ -117,23 +121,24 @@ function draw() {
     ellipse(680-hrrec,130,50,40);
   ellipse(710-hrrec,130,50,40);
   ellipse(740-hrrec,130,60,50);
+
   
   pop();
-  if (hr>=17){
-
+  if (hrrec>=17){
+  
   //sección para "filtro" para oscurecer el escenario
   //tiene el mismo manejo del movimiento que el rectangulo de fondo
   push();
   noStroke();
-  fill(6, 38, 65, 120);
-  rect(600 - hrrec, 0, 0 + hrrec, 400);
-  fill(131, 250, 244,255);
+  fill(6, 38, 65, 50);
+  rect(1200 - hrrec, 0, 0 + hrrec, 400);
+  fill(1331, 250, 244);
   noStroke();
   //ambientación luna+estrellas
-  ellipse(660 - hrrec, 60, 80, 80);
-  ellipse(750 - hrrec, 120, 10, 10);
-  ellipse(900 - hrrec, 40, 10, 10);
-  ellipse(950 - hrrec, 90, 10, 10);
+  ellipse(1260 - hrrec, 60, 80, 80);
+  ellipse(1350 - hrrec, 120, 10, 10);
+  ellipse(1500 - hrrec, 40, 10, 10);
+  ellipse(1550 - hrrec, 90, 10, 10);
   pop();
   }
   
