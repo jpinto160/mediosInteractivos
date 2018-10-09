@@ -6,4 +6,5 @@ ejercicios de la clase medios interactivos 2018_02
 4. [herramienta de dibujo](https://jpinto160.github.io/mediosInteractivos/04/)
 5. [reloj](https://jpinto160.github.io/mediosInteractivos/05/)
 6. [Video Musical Interactivo](https://jpinto160.github.io/mediosInteractivos/06/)
-6. [ecosistema: especies](https://jpinto160.github.io/mediosInteractivos/07/)
+7. [ecosistema: especies](https://jpinto160.github.io/mediosInteractivos/07/)
+
