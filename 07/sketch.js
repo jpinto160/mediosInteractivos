@@ -49,7 +49,7 @@ function setup() {
     var posyto = random(210, 300);
     torov[ito] = new toro(posxto, posyto);
   }
-  for (var il = 0; il < 700; il = il + 1) {
+  for (var il = 0; il < 400; il = il + 1) {
     var posxl = random(0, width);
     var posyl = random(180, height);
     pastold[il] = new pastol(posxl, posyl);
@@ -60,7 +60,7 @@ function setup() {
     var posypam = random(200, 250);
     panta = new pantera(posxpam, posypam);
   }
-	for (var iter=0; iter<1;iter=iter+1){
+	for (var iter=0; iter<3;iter=iter+1){
   terne[iter] = new ternero(200, 200);
   }
 }
@@ -153,7 +153,7 @@ function draw() {
         torov[ito].dibujarset();
   			torov[ito].moverset();
       for (var iter=0; iter< terne.length; iter=iter+1){
-       
+          
     	for (var il = 0; il < pastold.length; il = il + 1) {
     		pastold[il].dibujarsel(); 
         //se dibuja el pasto
@@ -165,21 +165,27 @@ function draw() {
         }
       }
        
-    if (dist(torov[ito].x,torov[ito],vacas[iv].x,vacas[iv].y)<50) {
-      terne[iter].dibujarsete();
-        terne[iter].moversete();
-
+    if (dist(torov[ito].x,torov[ito].y,vacas[iv].x,vacas[iv].y)<100) {
+     	
+			 terne[iter].nacerte();  
+       
+     
       }
-  
-      }  
         torov[ito].dibujarset();
   			torov[ito].moverset();
-      
+    
   }
       vacas[iv].dibujarsev();
       vacas[iv].moversev();
 
+       for(var ipam=0; ipam < panta.length; ipam=ipam+1){
+         if (dist(panta[ipam].x,panta[ipam].y,terne[iter].x,terne[iter].y)<40) {
+     	
+		 terne[iter].morirse();  
+      }
+       }
  }
+    }
   
 
   //condición para dibujar 3 abejas reinas
@@ -484,10 +490,10 @@ function ternero(mixte, miyte) {
   //caracteristicas
   this.x = mixte;
   this.y = miyte;
-  this.tervivo = true;
+  this.tervivo = false;
   //habilidades
   this.nacerte = function() {
-    this.tervivo = false;
+    this.tervivo =true;
   }
   this.dibujarsete = function() {
     if (this.tervivo == true) {
