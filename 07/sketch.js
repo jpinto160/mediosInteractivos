@@ -3,8 +3,8 @@ var abejas = [];
 var abejasr = [];
 var pajaros = [];
 var pastold = [];
-var torov=[];
-var terne=[];
+var torov = [];
+var terne = [];
 var direcv = 1;
 var direcxp = 0.3;
 var direcyp = 0.3;
@@ -14,8 +14,10 @@ var direcxte = 0.5;
 var direcyte = 0.5;
 var direcxpan = 0.5;
 var direcypan = 0.5;
-var panta;
+var panta=[];
 var terne;
+var xter = 200;
+var yter = 200;
 
 
 function setup() {
@@ -58,15 +60,16 @@ function setup() {
   for (var ipam = 0; ipam < 1; ipam = ipam + 1) {
     var posxpam = random(0, 200);
     var posypam = random(200, 250);
-    panta = new pantera(posxpam, posypam);
+    panta[ipam] = new pantera(posxpam, posypam);
   }
-	for (var iter=0; iter<3;iter=iter+1){
-  terne[iter] = new ternero(200, 200);
+  for (var iter = 0; iter < 1; iter = iter + 1) {
+    terne[iter] = new ternero(xter, yter);
   }
 }
 
 
 function draw() {
+  //fondo
   background(0, 192, 255);
   //rectángulo para simular el terreno
   noStroke();
@@ -136,57 +139,67 @@ function draw() {
   ellipse(480, 70, 20, 30);
 
 
- //interacción pasto + vaca +toro
+  //interacción pasto + vaca +toro
   for (var il1 = 0; il1 < pastold.length; il1 = il1 + 1) {
     pastold[il1].dibujarsel();
-  } 
-  for (var iter1=0; iter1< terne.length; iter1=iter1+1){
-       terne[iter1].dibujarsete();
-        terne[iter1].moversete();
   }
+  //for (var iter1=0; iter1< terne.length; iter1=iter1+1){
+  // terne[iter1].dibujarsete();
+  // terne[iter1].moversete();
+  //}
   //se dibuja la vaca y se le da movimiento
-    for (var iv = 0; iv < vacas.length; iv = iv + 1) {
-      vacas[iv].dibujarsev();
-      vacas[iv].moversev();
-      //se dibuja el toro y se le da movimiento
-  		for (var ito=0; ito < torov.length; ito=ito+1){
-        torov[ito].dibujarset();
-  			torov[ito].moverset();
-      for (var iter=0; iter< terne.length; iter=iter+1){
-          
-    	for (var il = 0; il < pastold.length; il = il + 1) {
-    		pastold[il].dibujarsel(); 
-        //se dibuja el pasto
-     	if (dist( pastold[il].x, pastold[il].y,vacas[iv].x, vacas[iv].y) < 70) {
-          pastold[il].morirsel();
-        }
-      if (dist( pastold[il].x, pastold[il].y,torov[ito].x, torov[ito].y) < 70) {
-          pastold[il].morirsel();
-        }
-      }
-       
-    if (dist(torov[ito].x,torov[ito].y,vacas[iv].x,vacas[iv].y)<100) {
-     	
-			 terne[iter].nacerte();  
-       
-     
-      }
-        torov[ito].dibujarset();
-  			torov[ito].moverset();
+  for (var iv = 0; iv < vacas.length; iv = iv + 1) {
+    vacas[iv].dibujarsev();
+    vacas[iv].moversev();
+    //se dibuja el toro y se le da movimiento
+    for (var ito = 0; ito < torov.length; ito = ito + 1) {
+      torov[ito].dibujarset();
+      torov[ito].moverset();
+    //se dibuja la pantera y se le da movimiento
+      for (var ipam=0; ipam <1;ipam=ipam+1){
     
-  }
+        //se dibuja el ternero y se le da movimiento
+      for (var iter = 0; iter < terne.length; iter = iter + 1) {
+ 				terne[iter].dibujarsete();
+        terne[iter].moversete();
+        //se dibuja el pasto
+        for (var il = 0; il < pastold.length; il = il + 1) {
+          pastold[il].dibujarsel();
+          //condición para que desaparezca el pasto si la vaca pasa por encima
+          if (dist(pastold[il].x, pastold[il].y, vacas[iv].x, vacas[iv].y) < 70) {
+            pastold[il].morirsel();
+          }
+          //condición para que desaparezca el pasto cuando el toro pasa por encima
+          if (dist(pastold[il].x, pastold[il].y, torov[ito].x, torov[ito].y) < 70) {
+            pastold[il].morirsel();
+          }
+        }
+        //condición para hacer que el ternero desaparezca cuando la pantera esté cerca
+        if (dist(panta[ipam].x, panta[ipam].y, terne[iter].x, terne[iter].y) <50) {
+
+          terne[iter].morirsete();
+        }
+
+        //condición para que cuando el toro y la vaca se junten nazca el ternero
+        if (dist(torov[ito].x, torov[ito].y, vacas[iv].x, vacas[iv].y) < 100) {
+
+          terne[iter].nacerte();
+
+        }
+        //llamado de variables para  dibujar y mover el toro y la pantera 
+  			panta[ipam].dibujarsepan();
+  			panta[ipam].moversepan();
+        torov[ito].dibujarset();
+        torov[ito].moverset();
+      }
+      //llamado de variables para dibujar y mover a la vaca 
       vacas[iv].dibujarsev();
       vacas[iv].moversev();
 
-       for(var ipam=0; ipam < panta.length; ipam=ipam+1){
-         if (dist(panta[ipam].x,panta[ipam].y,terne[iter].x,terne[iter].y)<40) {
-     	
-		 terne[iter].morirse();  
       }
-       }
- }
     }
-  
+  }
+
 
   //condición para dibujar 3 abejas reinas
   for (var ir1 = 0; ir1 < abejasr.length; ir1 = ir1 + 1) {
@@ -204,7 +217,7 @@ function draw() {
       //condición para crear 3 abejas reina
       for (var ir = 0; ir < abejasr.length; ir = ir + 1) {
         abejasr[ir].dibujarsear();
-      
+
         //condición para hacer que las abejas reinas se coman a las abejas normales
         //condición de proximidad
         if (dist(pajaros[ip].x, pajaros[ip].y, abejas[i].x, abejas[i].y) < 30) {
@@ -220,13 +233,9 @@ function draw() {
 
 
   }
-
-
-  panta.dibujarsepan();
-  panta.moversepan();
-
-
+ 
 }
+
 //especie 1= abejas
 function abeja(mix, miy) {
   //caracteristicas
@@ -246,8 +255,8 @@ function abeja(mix, miy) {
     //función para que se "mueran"
     this.morirsea = function() {
       this.abevivas = false;
-      this.x=2000;
-      this.y=3000;
+      this.x = 2000;
+      this.y = 3000;
     }
     //función para que se muevan 
     this.moversea = function() {
@@ -265,6 +274,7 @@ function abejar(mixa, miya) {
   this.reinavivas = true;
 
   //habilidades
+  //función para que se dibujen
   this.dibujarsear = function() {
     //función para que "vivan"
     if (this.reinavivas == true) {
@@ -273,11 +283,13 @@ function abejar(mixa, miya) {
       ellipse(this.x + 0, this.y + 0, 10, 5);
       ellipse(this.x + 3, this.y - 3, 5, 5);
     }
+    //condición para que se muera
     this.morirsear = function() {
       this.reinavivas = false;
-      this.x=2000;
-      this.y=3000;
+      this.x = 2000;
+      this.y = 3000;
     }
+    //condición para que se mueva
     this.moversear = function() {
       this.x = this.x + random(-1, 1);
       this.y = this.y + random(-1, 1);
@@ -294,6 +306,7 @@ function vaca(mixv, miyv) {
   this.vacavi = true;
 
   //habilidades 
+  //condición para que se dibujen
   this.dibujarsev = function() {
     if (this.vacavi == true) {
       fill(255);
@@ -328,7 +341,7 @@ function vaca(mixv, miyv) {
       ellipse(this.x + 70, this.y - 29, 3, 3);
 
     }
-
+		//condición para moverse
     this.moversev = function() {
       this.x = this.x + direcv;
 
@@ -349,6 +362,7 @@ function toro(mixt, miyt) {
   this.y = miyt;
   this.torovi = true;
   //habilidades
+  //condición para dibujarse
   this.dibujarset = function() {
     if (this.torovi == true) {
       //cuerpo
@@ -378,6 +392,7 @@ function toro(mixt, miyt) {
       ellipse(this.x - 58, this.y - 29, 3, 3);
       ellipse(this.x - 70, this.y - 29, 3, 3);
     }
+    //condición para moverse
     this.moverset = function() {
       this.x = this.x + direcxt;
       this.y = this.y + direcyt;
@@ -402,36 +417,38 @@ function pajaro(mixp, miyp) {
   //caracteristicas
   this.x = mixp;
   this.y = miyp;
-  this.c=0;
+  this.c = 0;
   this.parajarovi = true;
 
   //habilidades
+  //condición para dibujarse
   this.dibujarsep = function() {
     stroke(0);
     //ala 1
     beginShape();
     noFill();
-    vertex(this.x+this.c, this.y+this.c);
-    bezierVertex(this.x + 20+this.c, this.y - 20 -this.c, this.x + 40+this.c, this.y + 10+this.c, this.x + 40+this.c, this.y + 20+this.c);
+    vertex(this.x + this.c, this.y + this.c);
+    bezierVertex(this.x + 20 + this.c, this.y - 20 - this.c, this.x + 40 + this.c, this.y + 10 + this.c, this.x + 40 + this.c, this.y + 20 + this.c);
     endShape();
     //ala 2
     beginShape();
     noFill();
-    vertex(this.x + 80+this.c, this.y+this.c);
-    bezierVertex(this.x + 40 +this.c, this.y - 30 -this.c, this.x + 40+this.c, this.y + 10+this.c, this.x + 40+this.c, this.y + 20+this.c);
+    vertex(this.x + 80 + this.c, this.y + this.c);
+    bezierVertex(this.x + 40 + this.c, this.y - 30 - this.c, this.x + 40 + this.c, this.y + 10 + this.c, this.x + 40 + this.c, this.y + 20 + this.c);
     endShape();
     fill(132, 119, 30);
-    ellipse(this.x + 38, this.y + 10, 20+this.c, 20+this.c);
+    ellipse(this.x + 38, this.y + 10, 20 + this.c, 20 + this.c);
     fill(0);
-    ellipse(this.x + 34, this.y + 7, 3+this.c, 3+this.c);
-    ellipse(this.x + 42, this.y + 7, 3+this.c, 3+this.c);
+    ellipse(this.x + 34, this.y + 7, 3 + this.c, 3 + this.c);
+    ellipse(this.x + 42, this.y + 7, 3 + this.c, 3 + this.c);
     beginShape();
-    vertex(this.x + 38+this.c, this.y + 9+this.c);
-    vertex(this.x + 42+this.c, this.y + 12+this.c);
-    vertex(this.x + 38+this.c, this.y + 15+this.c);
-    vertex(this.x + 34+this.c, this.y + 12+this.c);
+    vertex(this.x + 38 + this.c, this.y + 9 + this.c);
+    vertex(this.x + 42 + this.c, this.y + 12 + this.c);
+    vertex(this.x + 38 + this.c, this.y + 15 + this.c);
+    vertex(this.x + 34 + this.c, this.y + 12 + this.c);
     endShape();
   }
+  //condición para moverse
   this.moversep = function() {
     this.x = this.x + direcxp;
     this.y = this.y + direcyp;
@@ -452,12 +469,13 @@ function pajaro(mixp, miyp) {
       direcyp = 1;
     }
   }
-	this.crecer= function(){
-  this.c=this.c+2;
-  
+  //condición para que crezcan
+  this.crecer = function() {
+    this.c = this.c + 2;
+
   }
-  
-  
+
+
 
 }
 //especie 5= pasto largo
@@ -468,6 +486,7 @@ function pastol(mixl, miyl) {
   this.pastolvivo = true;
 
   //habilidades
+  //condición para dibujarse
   this.dibujarsel = function() {
     if (this.pastolvivo == true) {
       beginShape();
@@ -480,6 +499,7 @@ function pastol(mixl, miyl) {
       endShape();
     }
   }
+  //condición para morirse
   this.morirsel = function() {
     this.pastolvivo = false;
   }
@@ -492,9 +512,11 @@ function ternero(mixte, miyte) {
   this.y = miyte;
   this.tervivo = false;
   //habilidades
+  //condición para nacer
   this.nacerte = function() {
-    this.tervivo =true;
+    this.tervivo = true;
   }
+  //condición para dibujarse
   this.dibujarsete = function() {
     if (this.tervivo == true) {
       fill(255);
@@ -516,6 +538,11 @@ function ternero(mixte, miyte) {
       arc(this.x + 30, this.y - 3, 10, 10, TWO_PI, PI);
     }
   }
+  //condición para morirse 
+  this.morirsete = function() {
+    this.tervivo = false;
+  }
+  //condición para moverse
   this.moversete = function() {
     this.x = this.x + direcxte;
     this.y = this.y + direcyte;
@@ -532,7 +559,9 @@ function ternero(mixte, miyte) {
     if (this.y > height - 40) {
       direcyte = -0.5;
     }
+
   }
+
 }
 //especie 7=pantera
 function pantera(mixpan, miypan) {
@@ -541,6 +570,7 @@ function pantera(mixpan, miypan) {
   this.y = miypan;
   this.panvivo = true;
   //habilidades
+  //condición para dibujarse 
   this.dibujarsepan = function() {
     if (this.panvivo == true) {
       fill(0);
@@ -557,6 +587,7 @@ function pantera(mixpan, miypan) {
       arc(this.x + 75, this.y + 2, 15, 15, TWO_PI, PI);
     }
   }
+  //condición para moverse
   this.moversepan = function() {
     this.x = this.x + direcxpan;
     this.y = this.y + direcypan;
@@ -575,3 +606,4 @@ function pantera(mixpan, miypan) {
     }
   }
 }
+
