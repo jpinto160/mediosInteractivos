@@ -65,7 +65,7 @@ function setup() {
     var posypam = random(200, 250);
     panta[ipam] = new pantera(posxpam, posypam);
   }
-  for (var iter = 0; iter < 3; iter = iter + 1) {
+  for (var iter = 0; iter < 1; iter = iter + 1) {
     terne[iter] = new ternero(xter, yter);
   }
 }
@@ -181,7 +181,7 @@ function draw() {
           }
         }
         //condición para hacer que el ternero desaparezca cuando la pantera esté cerca
-        if (dist(panta[ipam].x, panta[ipam].y, terne[iter].x, terne[iter].y) <100) {
+        if (dist(panta[ipam].x, panta[ipam].y, terne[iter].x, terne[iter].y) <50) {
 
           terne[iter].morirsete();
         }
