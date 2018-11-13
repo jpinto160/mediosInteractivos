@@ -7,7 +7,8 @@ var estado = 0;
 var timerpun=0;
 var finalscore;
 var bestscore=0;
-var timerback;
+var timerback=5;
+var timebacki=10000;
 var abeja;
 var barra = [];
 var tampa = 30;
@@ -36,7 +37,8 @@ function setup() {
   //se crea una abeja y se enciende el micrófono
   abeja = new abejita();
   mic = new p5.AudioIn();
-   mic.start();
+  mic.start();
+  background(back);
 }
 //sección donde se dibuja todo
 function draw() {
@@ -57,20 +59,23 @@ function draw() {
   } else if (estado==1){
     //contador que limita el tiempo de permanencia en esta sección
     //tiene como max 5 seg antes de que empiece el juego
-    timerback= 5000-millis();
-    timerback= map (timerback,0,5000,0,5);
-    //text(timerback,width/2, height/2,100);
+    if (frameCount %80 ==50){
+    timerback=timerback-1;
+    }
+    fill(0);
+    text(timerback,width/2, height/2,100);
     textSize(20);
     textStyle(BOLD);
     image(mano,windowWidth/2-50, windowHeight/2-150, 120,240);
-  	text('JUEGA CHASQUENADO LOS DEDOS', windowWidth / 2 - 160, windowHeight / 2 +200);
+  	text('JUEGA APLAUDIENDO', windowWidth / 2 - 160, windowHeight / 2 +200);
    
     //condición que permite el cambio de estado cuando el contador llega a 0 
-    if (timerback < 0){
+    if (timerback == 0){
     estado=2;
   }
     //cambio de estado a estado de juego 
 	} else if (estado == 2) {
+    timerback=5;
     // se enciende el microfono
     //se obtiene el nivel para reducir su entrada
 		 vol = mic.getLevel();
@@ -78,7 +83,7 @@ function draw() {
   	 h= floor(map (vol,0,1,1,10));
 		//text(h,100,100);
     //condición para limitar la entrada de audio para que funcione el juego
-		if (h > 1 && h <4){
+		if (h > 4 && h <8){
     abeja.subirp();
     }
     
@@ -93,7 +98,7 @@ function draw() {
     }
     //condición para el sistema de puntos
     if (timerpun %20== 20){
-    velau=velau+1;
+    velau=velau+2;
     }
     //condición para puntaje final y mejor puntaje
 		 finalscore=timerpun;
@@ -129,6 +134,13 @@ function draw() {
     text('Puntaje final:  '+ finalscore,windowWidth/2 -150,windowHeight/2+270);
     text('Mejor puntaje: '+ bestscore,windowWidth/2 -150 ,windowHeight/2+300);
     image(reint,windowWidth/2-100,(windowHeight/2)+100,200,80);
+    
+    for (var ir=0; ir < barra.length; ir= ir+1){
+    		
+      barra.splice(0,barra.length);
+    
+    }
+    
   }
 }
 //condición para testear el funcionamiento del juego con la tecla "espacio"
@@ -142,7 +154,7 @@ function abejita() {
   this.x = width / 4;
   this.y = height / 2;
   this.velo = 0.4;
-  this.fuer = -12;
+  this.fuer = -3;
   this.grave = 0.8;
 
   this.dibujarsep = function() {
@@ -174,8 +186,8 @@ function abejita() {
 }
 //función para las barras, creación-movimiento
 function barras() {
-  this.altot = random(0, height / 2);
-  this.altob = random(0, height / 2);
+  this.altot = random(0, (height / 2)-30);
+  this.altob = random(0, (height / 2)-20);
   this.x = width;
   this.velb = 2;
 
@@ -190,7 +202,7 @@ function barras() {
     this.x = this.x - this.velb -velau;
   }
   this.perderb=function(){
-  this.x=width;
+    
   timerpun=0;
   }
 }
@@ -204,7 +216,6 @@ if (estado==2){
    if (mouseX > windowWidth/2-150 && mouseX < windowWidth/2+170 && 
        mouseY > (windowHeight/2) + 100 && mouseY < (windowHeight/2)+140){
      estado=1;
-     timerback=0;
   }
   }
   if (estado==3){
