@@ -10,4 +10,4 @@ ejercicios de la clase medios interactivos 2018_02
 8. [ecosistema: especies+interacciones](https://jpinto160.github.io/mediosInteractivos/08/)
 9. [entrega 1 juego](https://jpinto160.github.io/mediosInteractivos/09/)
 10. [entrega final juego](https://jpinto160.github.io/mediosInteractivos/10/)
-11. [entrega FINAL juego](https://jpinto160.github.io/mediosInteractivos/11/)
+11. [entrega FINAL juego](https://jpinto160.github.io/mediosInteractivos/12/)
