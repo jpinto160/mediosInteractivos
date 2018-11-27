@@ -65,7 +65,7 @@ function setup() {
   capture.size(windowWidth, windowHeight);
   capture.parent('container');
   activarTracking();
-capture.hide();	
+
 }
 //sección donde se dibuja todo
 function draw() {
