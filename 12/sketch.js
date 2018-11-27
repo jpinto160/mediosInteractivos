@@ -62,7 +62,7 @@ function setup() {
   //sección de carga y captura de video
   pixelDensity(1);
   capture = createCapture(VIDEO);
-  //capture.size(windowWidth, windowHeight);
+  capture.size(windowWidth, windowHeight);
   capture.parent('container');
   activarTracking();
 }
